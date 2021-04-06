@@ -1,0 +1,13 @@
+name: Sample
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  sample:
+    runs-on: ubuntu-18.04
+    steps:
+      - run: echo "Sample action"
