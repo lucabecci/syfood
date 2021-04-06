@@ -4,6 +4,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "private": true,
   "main": "index.js",
   "license": "MIT",
   "author": "Luca Becci",
