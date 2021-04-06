@@ -1,0 +1,19 @@
+{
+  "name": "syfood",
+  "version": "1.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Luca Becci",
+  "scripts": {
+    "test": "lerna run test --scope={@walnut/common,@walnut/server}",
+    "new-version": "lerna version --conventional-commits --yes",
+    "diff": "lerna diff",
+    "pretty": "lerna run pretty"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}
