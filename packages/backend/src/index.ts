@@ -1,6 +1,4 @@
 import Server from "./app"
-
-
 class Main {
     public static run(){
         const server = new Server

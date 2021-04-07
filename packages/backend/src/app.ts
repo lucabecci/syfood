@@ -2,6 +2,7 @@ import Express, { Application } from "express";
 import cors from 'cors'
 import morgan from 'morgan'
 
+import IndexRouter from './routes/index.routes'
 class Server {
     private _app: Application
     
@@ -19,9 +20,7 @@ class Server {
     }
 
     private _initRoutes(): void{
-        this._app.get('/', (_req: any, res: any) => {
-            res.send('<h1>Syfood</h1>')
-        })        
+        this._app.use('/', IndexRouter)
     }
 
     public run(): void {
