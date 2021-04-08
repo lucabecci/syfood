@@ -1,33 +1,44 @@
 import Express, { Application } from "express";
-import cors from 'cors'
-import morgan from 'morgan'
+import cors from "cors";
+import morgan from "morgan";
 
-import IndexRouter from './routes/index.routes'
+import IndexRouter from "./routes/index.routes";
+import Database from "./database/database";
+import config from "./config/config";
 class Server {
-    private _app: Application
-    
-    constructor(){
-        this._app = Express()
-                
-        this._initConf()
-        this._initRoutes()
-    }
-    private _initConf(): void{
-        this._app.use(Express.json())
-        this._app.use(Express.urlencoded({extended: false}))
-        this._app.use(cors())
-        this._app.use(morgan("dev"))
-    }
+  private _app: Application;
+  constructor() {
+    this._app = Express();
 
-    private _initRoutes(): void{
-        this._app.use('/', IndexRouter)
-    }
+    this._confDatabase();
+    this._confMiddlewares();
+    this._confRoutes();
+  }
+  private async _confDatabase(): Promise<void> {
+    await Database.connect();
+  }
 
-    public run(): void {
-        this._app.listen(8080, () => {
-            console.log("Server on port:", 8080)
-        })
-    }
+  private _confMiddlewares(): void {
+    this._app.use(Express.json());
+    this._app.use(Express.urlencoded({ extended: false }));
+    this._app.use(
+      cors({
+        origin: config.CORS.ORIGIN,
+        credentials: !config.CORS.CRED,
+      })
+    );
+    this._app.use(morgan(config.PROD ? "short" : "dev"));
+  }
+
+  private _confRoutes(): void {
+    this._app.use("/", IndexRouter);
+  }
+
+  public run(): void {
+    this._app.listen(config.PORT, () => {
+      console.log("Server on port:", config.PORT);
+    });
+  }
 }
 
-export default Server
+export default Server;
