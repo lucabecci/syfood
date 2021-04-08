@@ -1,9 +1,10 @@
 import { Document, model, Schema, SchemaDefinition } from "mongoose";
 
-interface IUserSchema extends Document {
+export interface IUserSchema extends Document {
     email: string,
     username: string,
-    oauth: string
+    oauth: string,
+    ubication: string
 }
 
 class UserSchema {
