@@ -1,4 +1,4 @@
-import Express, { Application } from "express";
+import Express from "express";
 import cors from "cors";
 import morgan from "morgan";
 
@@ -6,7 +6,7 @@ import IndexRouter from "./routes/index.routes";
 import Database from "./database/database";
 import config from "./config/config";
 class Server {
-  private _app: Application;
+  private _app: Express.Application;
   constructor() {
     this._app = Express();
 
