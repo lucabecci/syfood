@@ -23,6 +23,9 @@ class UserSchema {
             oauth: {
                 type: String, required: true,
                 unique: true, trim: true
+            },
+            ubication: {
+                type: String
             }
         }
         this._schema = new Schema(this._def, {timestamps: true})
@@ -32,8 +35,6 @@ class UserSchema {
         return this._schema
     }
 }
-
-
 
 const schema  = new UserSchema()
 
