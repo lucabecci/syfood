@@ -12,6 +12,10 @@ export interface SaveUserReturn {
     user: IUserSchema | null
 }
 
+export interface GetUserByOauth {
+    oauth: string
+}
+
 export interface GetUserInput { 
     _id: string  
 }
