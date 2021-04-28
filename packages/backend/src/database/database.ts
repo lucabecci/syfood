@@ -6,6 +6,7 @@ class Database {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    dbName: "syfood"
   };
 
   public static async connect(): Promise<void> {

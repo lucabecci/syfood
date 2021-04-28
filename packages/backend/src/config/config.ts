@@ -5,8 +5,8 @@ export default {
         CRED: process.env.CORS_CRED || false
     },
     DB: {
-        URL: process.env.DB_URL || "mongodb://localhost:27017/syfood-dev"
+        URL: process.env.DB_URL || "mongodb://localhost:27017/"
 
     },
-    PROD: process.env.PROD || false
+    NODE_ENV: process.env.NODE_ENV || "dev"
 }

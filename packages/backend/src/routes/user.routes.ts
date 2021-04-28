@@ -1,5 +1,5 @@
 import { IRouter, Router } from "express";
-import UserController from "src/controllers/user.controller";
+import UserController from "../controllers/user.controller";
 
 class UserRuter {
     private _router: IRouter
@@ -13,7 +13,8 @@ class UserRuter {
     }
 
     private _conf(): void {
-        this._router.get('/', this._userController.getProfile)
+        this._router.get('/profile', this._userController.getProfile)
+        this._router.get('/all', this._userController.getAllUsers)
     }
 
     public instance(): IRouter {

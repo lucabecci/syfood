@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 
 import IndexRouter from "./routes/index.routes";
+import UserRouter from './routes/user.routes'
 import Database from "./database/database";
 import config from "./config/config";
 class Server {
@@ -27,11 +28,12 @@ class Server {
         credentials: !config.CORS.CRED,
       })
     );
-    this._app.use(morgan(config.PROD ? "short" : "dev"));
+    this._app.use(morgan(config.NODE_ENV));
   }
 
   private _confRoutes(): void {
     this._app.use("/", IndexRouter);
+    this._app.use("/user", UserRouter)
   }
 
   public run(): void {
