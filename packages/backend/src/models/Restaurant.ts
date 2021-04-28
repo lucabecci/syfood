@@ -1,43 +1,25 @@
-import { model, Schema, SchemaDefinition } from "mongoose";
-import Location from "./Location";
+import { prop, Ref } from "@typegoose/typegoose";
+import User from "./User";
 
-class RestaurantScheme {
-    private _def: SchemaDefinition
-    private _schema: Schema
 
-    constructor(){
-        this._def = {
-            Name: {
-                type: String,
-                maxlength: 20,
-                trim: true,
-                required: true,
-                minlength: 2
-            },
-            Description: {
-                type: String,
-                maxlength: 50,
-                required: true,
-                minlength: 15
-            },
-            ProfilePic: {
-                type: String,
-                required: true,
-                default: "default.png"
-            },
-            Rated: {
-                type: Number,
-                default: 3
-            },
-            ResLocation: Location
-        }
-        this._schema = new Schema(this._def, {timestamps: true})
-    }
+class Restaurant {
+    @prop({required: true, minlength: 1, maxlength: 20})
+    public name!: string
 
-    public instance(): Schema {
-        return this._schema
-    }
+    @prop({required: true, maxlength: 50, minlength: 20})
+    public description!: string 
+
+    @prop({default: "profile-restaurant.jpg"})
+    public profile_pic?: string
+
+    @prop({required: true})
+    public location!: string
+
+    @prop({type: () => [String]})
+    public likes?: string[]
+
+    @prop({required: true, ref: () => User})
+    public owner!: Ref<User>
 }
-const schema = new RestaurantScheme
 
-export default model("Restaurant", schema.instance())
+export default Restaurant
