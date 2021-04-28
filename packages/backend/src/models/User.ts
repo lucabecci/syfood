@@ -6,16 +6,19 @@ class User {
     public username!: string
 
     @prop({required: true})
-    public email: string
+    public email!: string
 
     @prop({required: true})
-    public oauth_id: string
+    public oauth_id!: string
+
+    @prop({required: true})
+    public profile_pic!: string
 
     @prop({required: true, default: "client"})
     public type?: string
 
     @prop()
-    public location: string
+    public location?: string
 
     @prop({ref: () => Restaurant})
     public restaurant?: Ref<Restaurant>
