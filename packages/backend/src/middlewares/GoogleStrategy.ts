@@ -54,4 +54,4 @@ class GoogleStrategy {
 
 }
 
-export default GoogleStrategy
+export default GoogleStrategy.Setup()
