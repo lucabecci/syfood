@@ -1,4 +1,4 @@
-import {IUserSchema} from '../models/User'
+import User from '../models/User'
 
 export interface SaveUserInput {
     email: string, 
@@ -9,7 +9,7 @@ export interface SaveUserInput {
 
 export interface SaveUserReturn {
     success: boolean,
-    user: IUserSchema | null
+    user: User | null
 }
 
 export interface GetUserByOauth {
@@ -22,10 +22,10 @@ export interface GetUserInput {
 
 export interface GetUserReturn {
     success: boolean,
-    user: IUserSchema | null
+    user: User | null
 }
 
 export interface GetUsersReturn {
     success: boolean,
-    users: IUserSchema[] | null
+    users: User[] | null
 }
