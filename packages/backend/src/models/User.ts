@@ -20,6 +20,9 @@ class User {
     @prop()
     public location?: string
 
+    @prop({default: false})
+    public admin?: boolean
+
     @prop({ref: () => Restaurant})
     public restaurant?: Ref<Restaurant>
 }
