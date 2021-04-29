@@ -1,6 +1,8 @@
 import Express from "express";
 import cors from "cors";
 import morgan from "morgan";
+import cookieSession from "cookie-session";
+import passport from "passport";
 
 import IndexRouter from "./routes/index.routes";
 import UserRouter from './routes/user.routes'
@@ -15,6 +17,7 @@ class Server {
     this._confMiddlewares();
     this._confRoutes();
   }
+  
   private async _confDatabase(): Promise<void> {
     await Database.connect();
   }
@@ -29,6 +32,17 @@ class Server {
       })
     );
     this._app.use(morgan(config.NODE_ENV));
+
+    this._app.use(
+      cookieSession({
+        name:"auth",
+        keys: ["key1", "key2"],
+        maxAge: (60 * 60 * 60)
+      })
+    )
+
+    this._app.use(passport.initialize())
+    this._app.use(passport.session())
   }
 
   private _confRoutes(): void {

@@ -1,4 +1,5 @@
 import { IRouter, Router } from "express";
+import passport from "passport";
 import UserController from "../controllers/user.controller";
 
 class UserRuter {
@@ -14,6 +15,20 @@ class UserRuter {
 
     private _conf(): void {
         this._router.get('/profile', this._userController.getProfile)
+        this._router.get(
+            '/login', 
+            passport.authenticate("google", { scope: ["profile", "email"]})
+            )
+
+        this._router.get(
+            "/callback",
+            passport.authenticate(
+                "google",
+                { failureRedirect: "/failed"},
+            ),
+            this._userController.redirectUser
+        )
+
         this._router.get('/all', this._userController.getAllUsers)
     }
 

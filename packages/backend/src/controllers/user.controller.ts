@@ -21,6 +21,10 @@ class UserController {
         }
     }
 
+    public redirectUser(_req: Request, res: Response): void {
+        res.redirect("/home")
+    }
+
     public async getAllUsers(_req: Request, res: Response): Promise<User[] | any>{
         try{
             const resp: GetUsersReturn = await UserService.getUsers()
