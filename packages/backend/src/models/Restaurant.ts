@@ -1,4 +1,5 @@
 import { prop, Ref } from "@typegoose/typegoose";
+import Recipes from "./Recipes";
 import User from "./User";
 
 
@@ -20,6 +21,9 @@ class Restaurant {
 
     @prop({required: true, ref: () => User})
     public owner!: Ref<User>
+
+    @prop({ref: () => Recipes})
+    public recipes?: Ref<Recipes[]>
 }
 
 export default Restaurant
